@@ -26,6 +26,7 @@ async function getPriceFeed() {
       "volume",
       "circulatingSupply",
     ];
+    const coinArr = [];
 
     $(elmSelector).each((parentIdx, parentElem) => {
       let keyIdx = 0;
@@ -38,7 +39,7 @@ async function getPriceFeed() {
             let tdValue = $(childElem).text();
 
             if (keyIdx === 1 || keyIdx === 7) {
-              console.log($("p:first-child", $(childElem).html()).text());
+              tdValue = $("p:first-child", $(childElem).html()).text();
             }
 
             if (tdValue) {
@@ -46,12 +47,32 @@ async function getPriceFeed() {
               keyIdx++;
             }
           });
-        // console.log(coinObj);
+        coinArr.push(coinObj);
       }
     });
+
+    return coinArr;
   } catch (err) {
     console.error(err);
   }
 }
 
-getPriceFeed();
+const app = express();
+
+app.get("/api/price-feed", async (req, res) => {
+  try {
+    const priceFeed = await getPriceFeed();
+
+    return res.status(200).json({
+      result: priceFeed,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      err: err.toString(),
+    });
+  }
+});
+
+app.listen(3000, () => {
+  console.log("running on port 3000");
+});
