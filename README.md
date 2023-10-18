@@ -28,6 +28,13 @@ node index.js
 6. Test Endpoint:
 http://localhost:3000/api/price-feed
 
+## Example Response
+
+![App Screenshot](https://snipboard.io/tCTdgV.jpg)
+
+![App Screenshot](https://snipboard.io/Jf7mWT.jpg)
+
+![App Screenshot](https://snipboard.io/CcFPiR.jpg)
 ## Technology Stack
 Node.js with Express
 ## Author
