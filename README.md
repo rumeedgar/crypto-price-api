@@ -25,8 +25,6 @@ npm install
 5. Start the server:
 node index.js
 
-6. Test Endpoint:
-http://localhost:3000/api/price-feed
 
 ## Example Response
 
